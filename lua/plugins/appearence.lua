@@ -8,15 +8,15 @@ return {
     end,
   },
   {
-    "feline-nvim/feline.nvim",
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
-      local ctp_feline = require('catppuccin.groups.integrations.feline')
-
-      ctp_feline.setup()
-          
-      require("feline").setup({
-          components = ctp_feline.get(),
+      require('lualine').setup({
+        options = {
+            theme = "catppuccin"
+            -- ... the rest of your lualine config
+        }
       })
     end,
-  }
+  },
 }

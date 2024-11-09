@@ -4,3 +4,5 @@ vim.opt.termguicolors = true
 -- Configs
 
 require("config.lazy")
+
+require("keys.common")
