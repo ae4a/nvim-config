@@ -27,5 +27,9 @@ wk.add({
     -- Bufferline
     { "<C-Tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Go to next buffer in bufferline" },
     { "<C-S-Tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Go to prev buffer in bufferline" },
+
+    -- Buffer buy
+    { "<leader>q", "<cmd>:Bdelete<cr>", desc = "Delete current buffer" },
+    
   }
 })

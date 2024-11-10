@@ -13,8 +13,15 @@ return {
     config = function()
       require('lualine').setup({
         options = {
-            theme = "catppuccin"
-            -- ... the rest of your lualine config
+          icons_enabled = true,
+          theme = "ayu_mirage",
+          component_separators = { left = '|', right = '|'},
+          section_separators = { left = '', right = ''},
+          disabled_filetypes = {
+            statusline = {},
+            winbar = {},
+          },
+          globalstatus = true,
         }
       })
     end,
@@ -38,5 +45,10 @@ return {
         },
       }
     end,
+  },
+  { "moll/vim-bbye" }, -- For right buffer close
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
   }
 }
