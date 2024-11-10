@@ -8,7 +8,7 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "williamboman/mason.nvim" },
-    ensure_installed = { "lua_ls", "gopls" },
+    ensure_installed = { "lua_ls", "gopls", "ts_ls" },
     config = function()
       require("mason-lspconfig").setup()
     end,
@@ -46,6 +46,14 @@ return {
     event = {"CmdlineEnter"},
     ft = {"go", 'gomod'},
     build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+  },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
+    config = function()
+      require("typescript-tools").setup {}
+    end,
   }
 
 }
