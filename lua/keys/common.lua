@@ -23,5 +23,9 @@ wk.add({
     { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Telescope live grep" },
     { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
     { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Telescope help tags" },
+
+    -- Bufferline
+    { "<C-Tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Go to next buffer in bufferline" },
+    { "<C-S-Tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Go to prev buffer in bufferline" },
   }
 })
