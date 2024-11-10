@@ -16,7 +16,7 @@ wk.add({
     mode = {"n"},
 
     -- Nvim tree
-    { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Toggle nvim tree" },
+    { "<leader>e", "<cmd>NvimTreeFocus<cr>", desc = "Toggle nvim tree" },
 
     -- Telescope
     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Telescope find files" },
