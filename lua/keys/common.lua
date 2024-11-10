@@ -13,7 +13,7 @@ wk.add({
     { "jk", "<escape>", desc = "Exit from insert mode"},
   },
   {
-    mode = {"n"},
+    mode = { "n" },
 
     -- Nvim tree
     { "<leader>e", "<cmd>NvimTreeFocus<cr>", desc = "Toggle nvim tree" },
@@ -30,6 +30,11 @@ wk.add({
 
     -- Buffer buy
     { "<leader>q", "<cmd>:Bdelete<cr>", desc = "Delete current buffer" },
+  },
+  {
+    mode = { "n", "t"},
     
+    -- ToggleTerm
+    { "<C-`>", "<cmd>ToggleTerm size=10 dir=./ direction=horizontal name=Terminal<cr>", desc = "Toggle terminal" },
   }
 })

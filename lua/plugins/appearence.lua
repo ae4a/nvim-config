@@ -46,9 +46,16 @@ return {
       }
     end,
   },
-  { "moll/vim-bbye" }, -- For right buffer close
+  {
+    "moll/vim-bbye"
+  }, -- For right buffer close
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
+  },
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    config = true,
   }
 }
