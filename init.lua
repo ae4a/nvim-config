@@ -1,5 +1,6 @@
 vim.cmd("language en_US")
 vim.opt.termguicolors = true
+vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 
 -- Configs
 
