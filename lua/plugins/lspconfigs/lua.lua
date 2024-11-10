@@ -1,6 +1,5 @@
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-
 require("lspconfig").lua_ls.setup {
   on_init = function(client)
     if client.workspace_folders then

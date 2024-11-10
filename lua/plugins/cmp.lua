@@ -6,6 +6,7 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = { "L3MON4D3/LuaSnip", "hrsh7th/cmp-buffer", "saadparwaiz1/cmp_luasnip"},
     config = function()
       require('luasnip.loaders.from_vscode').lazy_load()
