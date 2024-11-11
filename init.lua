@@ -20,8 +20,12 @@ vim.o.signcolumn = 'number'
 -- Empty chars
 opt.list = true
 opt.listchars = 'space:·,trail: ,tab:  '
-opt.tabstop=2
-opt.softtabstop=2
+
+-- Tabs
+opt.shiftwidth = 2
+opt.tabstop = 2
+opt.smartindent = true
+opt.expandtab = true
 
 -- Configs
 

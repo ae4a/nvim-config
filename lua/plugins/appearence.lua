@@ -60,5 +60,14 @@ return {
     "akinsho/toggleterm.nvim",
     version = "*",
     config = true,
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("gitsigns").setup {
+        signcolumn = false,
+        numhl = true,
+      }
+    end,
   }
 }
