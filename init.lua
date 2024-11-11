@@ -7,6 +7,7 @@ opt.clipboard = 'unnamedplus'
 opt.fixeol = false
 opt.termguicolors = true
 opt.completeopt = {'menu', 'menuone', 'noselect'}
+opt.showmode = false
 
 
 -- Lines

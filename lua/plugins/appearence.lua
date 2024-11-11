@@ -1,26 +1,29 @@
 return {
+  -- {
+  --   "catppuccin/nvim",
+  --   name = "catppuccin",
+  --   priority = 1000,
+  --   config = function()
+  --     vim.cmd.colorscheme("catppuccin")
+  --   end,
+  -- },
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
+    "rebelot/kanagawa.nvim",
     config = function()
-      vim.cmd.colorscheme("catppuccin")
+      require('kanagawa').setup({})
+      vim.cmd("colorscheme kanagawa")
     end,
   },
   {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    "nvim-lualine/lualine.nvim",
+    dependencies = { 'nvim-tree/nvim-web-devicons', "rebelot/kanagawa.nvim" },
     config = function()
-      require('lualine').setup({
+      require("lualine").setup({
         options = {
           icons_enabled = true,
-          theme = "ayu_mirage",
+          theme = require("plugins.lualine.kanagawa"),
           component_separators = { left = '|', right = '|'},
           section_separators = { left = '', right = ''},
-          disabled_filetypes = {
-            statusline = {},
-            winbar = {},
-          },
           globalstatus = true,
         }
       })
