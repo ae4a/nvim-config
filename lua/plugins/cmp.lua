@@ -64,7 +64,6 @@ return {
           { name = 'buffer' },
         })
       }
-
       -- cmp.setup.cmdline({ '/', '?' }, {
       --   mapping = cmp.mapping.preset.cmdline(),
       --   sources = {
@@ -84,4 +83,7 @@ return {
       -- })
     end,
   },
+  {
+    "jiangmiao/auto-pairs",
+  }
 }
