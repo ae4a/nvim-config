@@ -14,8 +14,8 @@ return {
     end,
   },
   {
-    dependencies = { "williamboman/mason-lspconfig.nvim", "hrsh7th/cmp-nvim-lsp"},
     "neovim/nvim-lspconfig",
+    dependencies = { "williamboman/mason-lspconfig.nvim", "hrsh7th/cmp-nvim-lsp"},
     config = function()
       -- setup lsp servers
       require("plugins.lspconfigs.lua")
@@ -32,7 +32,7 @@ return {
     },
     config = function()
       require("go").setup()
-      
+
       -- Run gofmt + goimports on save
       local format_sync_grp = vim.api.nvim_create_augroup("goimports", {})
       vim.api.nvim_create_autocmd("BufWritePre", {
@@ -55,5 +55,4 @@ return {
       require("typescript-tools").setup {}
     end,
   }
-
 }

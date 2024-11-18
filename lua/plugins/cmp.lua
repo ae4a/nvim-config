@@ -23,6 +23,26 @@ return {
         window = {
           documentation = cmp.config.window.bordered()
         },
+        sources = {
+          {name = 'path'},
+          {name = 'nvim_lsp', keyword_length = 1},
+          {name = 'buffer', keyword_length = 3},
+          {name = 'luasnip', keyword_length = 2},
+        },
+        formatting = {
+          fields = {'menu', 'abbr', 'kind'},
+          format = function(entry, item)
+            local menu_icon = {
+              nvim_lsp = 'λ',
+              luasnip = '⋗',
+              buffer = 'Ω',
+              path = '🖫',
+            }
+
+            item.menu = menu_icon[entry.source.name]
+            return item
+          end,
+        },
         mapping = cmp.mapping.preset.insert({
           ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
@@ -57,12 +77,6 @@ return {
         end, { "i", "s" }),
         ['<escape>'] = cmp.mapping.abort(),
         }),
-        sources = cmp.config.sources({
-          { name = 'nvim_lsp' },
-          { name = 'luasnip' },
-        }, {
-          { name = 'buffer' },
-        })
       }
       -- cmp.setup.cmdline({ '/', '?' }, {
       --   mapping = cmp.mapping.preset.cmdline(),
@@ -70,7 +84,7 @@ return {
       --     { name = 'buffer' }
       --   }
       -- })
-    
+
       -- -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
       -- cmp.setup.cmdline(':', {
       --   mapping = cmp.mapping.preset.cmdline(),
