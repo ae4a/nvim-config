@@ -35,7 +35,7 @@ wk.add({
     mode = { "n", "t"},
 
     -- ToggleTerm
-    { "<C-`>", "<cmd>ToggleTerm size=10 dir=./ direction=horizontal name=Terminal<cr>", desc = "Toggle terminal" },
+    { "<C-o>", "<cmd>ToggleTerm size=10 dir=./ direction=horizontal name=Terminal<cr>", desc = "Toggle terminal" },
   }
 })
 
@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         mode = {"n"},
         group = "buffer",
 
-        { "C-k", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "Displays hover information about the symbol under the cursor" },
+        { "gh", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "Displays hover information about the symbol under the cursor" },
         { "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "Jump to the definition" },
         { "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", desc = "Jump to declaration" },
         { "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", desc = "Lists all the implementations for the symbol under the cursor" },
