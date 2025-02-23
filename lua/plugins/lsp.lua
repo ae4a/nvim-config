@@ -22,6 +22,8 @@ return {
       require("plugins.lspconfigs.go")
       require("plugins.lspconfigs.ts")
       require("plugins.lspconfigs.cpp")
+      require("plugins.lspconfigs.html")
+      require("plugins.lspconfigs.css")
     end,
   },
   {
