@@ -38,10 +38,10 @@ return {
         options = {
           offsets = {
             {
-                filetype = "NvimTree",
-                text = "File Explorer",
-                text_align = "left",
-                separator = true
+              filetype = "NvimTree",
+              text = "File Explorer",
+              text_align = "left",
+              separator = true
             },
           },
           color_icons = true,
@@ -67,6 +67,19 @@ return {
       require("gitsigns").setup {
         signcolumn = false,
         numhl = true,
+      }
+    end,
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("ibl").setup{
+        scope = {
+          show_start = false,
+        },
+        indent = {
+          char = '▏',
+        },
       }
     end,
   }

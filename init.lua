@@ -19,7 +19,7 @@ vim.o.signcolumn = 'number'
 
 -- Empty chars
 opt.list = true
-opt.listchars = 'space:·,trail: ,tab:  '
+opt.listchars = 'space: ,trail: ,tab:  ' -- ·
 
 -- Tabs
 opt.shiftwidth = 2
