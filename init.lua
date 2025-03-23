@@ -27,6 +27,17 @@ opt.tabstop = 2
 opt.smartindent = true
 opt.expandtab = true
 
+-- Diagnostics
+vim.diagnostic.config({
+  virtual_text = false,
+  severity_sort = true,
+  float = {
+    border = 'rounded',
+    --source = 'always',
+  },
+})
+
+
 -- Configs
 
 require("config.lazy")

@@ -30,6 +30,9 @@ wk.add({
 
     -- Buffer buy
     { "<leader>q", "<cmd>:Bdelete<cr>", desc = "Delete current buffer" },
+
+    -- To read errors
+    { "fj", "<cmd>:lua vim.diagnostic.open_float()<cr>", desc = "Show diagnostic" },
   },
   {
     mode = { "n", "t"},

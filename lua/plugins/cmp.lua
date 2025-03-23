@@ -25,9 +25,9 @@ return {
         },
         sources = {
           {name = 'path'},
-          {name = 'nvim_lsp', keyword_length = 1},
-          {name = 'buffer', keyword_length = 3},
-          {name = 'luasnip', keyword_length = 2},
+          {name = 'nvim_lsp', keyword_length = 1, max_item_count = 8},
+          {name = 'buffer', keyword_length = 3, max_item_count = 5},
+          {name = 'luasnip', keyword_length = 2, max_item_count = 3},
         },
         formatting = {
           fields = {'menu', 'abbr', 'kind'},
