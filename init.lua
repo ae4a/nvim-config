@@ -1,4 +1,4 @@
-vim.cmd("language en_US")
+--vim.cmd("language en_US")
 local opt = vim.opt
 
 opt.splitright = true
@@ -9,13 +9,15 @@ opt.termguicolors = true
 opt.completeopt = {'menu', 'menuone', 'noselect'}
 opt.showmode = false
 
-
 -- Lines
+
 opt.number = true
 --opt.relativenumber = true
 opt.numberwidth = 4
 opt.wrap = false
 vim.o.signcolumn = 'number'
+-- does not work: vim.opt_local.formatoptions:remove({ 'r', 'o' })
+vim.cmd([[autocmd BufEnter * set formatoptions-=ro]])
 
 -- Empty chars
 opt.list = true
@@ -39,6 +41,9 @@ vim.diagnostic.config({
 
 
 -- Configs
+--
+
+
 
 require("config.lazy")
 
