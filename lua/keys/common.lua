@@ -5,7 +5,6 @@ wk.add({
     mode = { "n", "v" },
 
     -- Common
-    { "<leader>q", "<cmd>q<cr>", desc = "Quit" },
     { "<leader>w", "<cmd>w<cr>", desc = "Write" },
   },
   {
@@ -31,12 +30,17 @@ wk.add({
     -- { "<C-S-Tab>",  "<cmd>BufferLineCyclePrev<cr>",  desc = "Go to prev buffer in bufferline" },
 
     -- Buffer buy
-    { "<leader>q",  "<cmd>:Bdelete<cr>",             desc = "Delete current buffer" },
+    { "<leader>q", "<cmd>:lua Snacks.bufdelete()<cr>",           desc = "Delete current buffer" },
 
     -- Fuzzy finder
-    { "<C-p>",      "<cmd>:FzfLua<cr>",              desc = "Fzf" },
-    { "<leader>g",      "<cmd>:FzfLua live_grep<cr>",    desc = "Fzf live grep" },
-    { "<leader>r",      "<cmd>:FzfLua live_grep_resume<cr>",    desc = "Fzf live grep resume" },
+    { "<C-p>",     "<cmd>:FzfLua<cr>",                           desc = "Fzf" },
+    { "<leader>g", "<cmd>:FzfLua live_grep<cr>",                 desc = "Fzf live grep" },
+    { "<leader>r", "<cmd>:FzfLua live_grep_resume<cr>",          desc = "Fzf live grep resume" },
+    { "<leader>f", "<cmd>:FzfLua files<cr>",                     desc = "Fzf files" },
+
+    -- Snacks
+    { "<C-l>",     "<cmd>:lua Snacks.lazygit()<cr>",             desc = "Lazygit" },
+    { "<leader>b", "<cmd>:lua Snacks.git.blame_line()<cr>",    desc = "Git blame line" },
 
     -- LSP
     { "gh",         "<cmd>lua vim.lsp.buf.hover()<cr>",           desc = "Displays hover information about the symbol under the cursor" },

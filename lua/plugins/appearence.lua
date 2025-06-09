@@ -10,7 +10,13 @@ return {
   {
     "rebelot/kanagawa.nvim",
     config = function()
-      require('kanagawa').setup({})
+      require('kanagawa').setup({
+        overrides = function(colors)
+          return {
+            SnacksIndentScope = { fg = colors.theme.ui.special }, -- Do not like the default one
+          }
+        end,
+      })
       vim.cmd("colorscheme kanagawa")
     end,
   },
@@ -50,16 +56,17 @@ return {
     end,
   },
   {
-    "moll/vim-bbye"
-  }, -- For right buffer close
-  {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
   },
   {
     "akinsho/toggleterm.nvim",
     version = "*",
-    config = true,
+    opts = {
+      float_opts = {
+        border = 'curved',
+      },
+    },
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -70,17 +77,17 @@ return {
       }
     end,
   },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    config = function()
-      require("ibl").setup{
-        scope = {
-          show_start = false,
-        },
-        indent = {
-          char = '▏',
-        },
-      }
-    end,
-  }
+--   {
+--     "lukas-reineke/indent-blankline.nvim",
+--     config = function()
+--       require("ibl").setup{
+--         scope = {
+--           show_start = false,
+--         },
+--         indent = {
+--           char = '▏',
+--         },
+--       }
+--     end,
+--   }
 }
