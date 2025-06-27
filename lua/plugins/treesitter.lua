@@ -4,7 +4,19 @@ return {
     config = function()
       require("nvim-treesitter.install").compilers = { "clang" }
       require("nvim-treesitter.configs").setup {
-        ensure_installed = { "html", "lua", "c", "cpp", "go", "markdown", "javascript", "typescript", "python", "vimdoc" },
+        ensure_installed = {
+          "html",
+          "lua",
+          "c",
+          "cpp",
+          "go",
+          "markdown",
+          "javascript",
+          "typescript",
+          "python",
+          "vimdoc",
+          "comment"
+        },
         highlight = {
           enable = true,
         },

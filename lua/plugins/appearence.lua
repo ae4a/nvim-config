@@ -58,6 +58,9 @@ return {
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("todo-comments").setup()
+    end,
   },
   {
     "akinsho/toggleterm.nvim",
@@ -77,17 +80,8 @@ return {
       }
     end,
   },
---   {
---     "lukas-reineke/indent-blankline.nvim",
---     config = function()
---       require("ibl").setup{
---         scope = {
---           show_start = false,
---         },
---         indent = {
---           char = '▏',
---         },
---       }
---     end,
---   }
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
 }

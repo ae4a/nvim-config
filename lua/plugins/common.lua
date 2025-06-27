@@ -41,8 +41,14 @@ return {
       notifier = { enabled = true },
       -- quickfile = { enabled = true },
       -- scope = { enabled = true },
-      -- scroll = { enabled = true },
-      -- statuscolumn = { enabled = true },
+      scroll = {
+        enabled = true,
+        animate = {
+          duration = {
+            total = 50,
+          },
+        },
+      },
       -- words = { enabled = true },
     },
   },
