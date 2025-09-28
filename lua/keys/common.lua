@@ -16,8 +16,8 @@ wk.add({
     group = "buffer",
 
     -- Nvim tree
-    { "<leader>e", "<cmd>NvimTreeFocus<cr>", desc = "Toggle nvim tree" },
-    { "<leader>E", "<cmd>NvimTreeClose<cr>", desc = "Close nvim tree" },
+    { "<leader>e", "<cmd>Neotree focus<cr>", desc = "Toggle file tree" },
+    { "<leader>E", "<cmd>Neotree close<cr>", desc = "Close file tree" },
 
     -- Telescope - do not use TODO remove telescope
     -- { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Telescope find files" },
@@ -39,7 +39,6 @@ wk.add({
     { "<leader>f", "<cmd>:FzfLua files<cr>",                     desc = "Fzf files" },
 
     -- Snacks
-    { "<C-l>",     "<cmd>:lua Snacks.lazygit()<cr>",             desc = "Lazygit" },
     { "<leader>b", "<cmd>:lua Snacks.git.blame_line()<cr>",    desc = "Git blame line" },
 
     -- LSP
@@ -59,8 +58,11 @@ wk.add({
   {
     mode = { "n", "t"},
 
+    -- Snacks
+    { "<C-o>", "<cmd>:lua Snacks.terminal.toggle()<cr>",    desc = "Toggle snacks terminal" },
+    { "<C-l>",     "<cmd>:lua Snacks.lazygit()<cr>",             desc = "Lazygit" },
     -- ToggleTerm
-    { "<C-o>", "<cmd>ToggleTerm direction=float<cr>", desc = "Toggle terminal" },
+    --{ "<C-o>", "<cmd>ToggleTerm direction=float<cr>", desc = "Toggle terminal" },
   }
 })
 

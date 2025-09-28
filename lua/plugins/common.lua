@@ -1,8 +1,43 @@
 return {
+  --{
+  --  "nvim-tree/nvim-tree.lua",
+  --  config = function()
+  --    require("nvim-tree").setup()
+  --  end,
+  --},
   {
-    "nvim-tree/nvim-tree.lua",
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "nvim-tree/nvim-web-devicons", -- optional, but recommended
+    },
+    lazy = false, -- neo-tree will lazily load itself
     config = function()
-      require("nvim-tree").setup()
+      require('neo-tree').setup({
+        enable_diagnostics = true,
+        filesystem = {
+          filtered_items = {
+            hide_dotfiles = false,
+            hide_gitignored = true,
+            show_hidden_count = false,
+          }
+        },
+        default_component_configs = { -- Fixes some icons
+          diagnostics = {
+            symbols = {
+              hint = "H",
+              info = "I",
+              warn = "W",
+              error = "E",
+            },
+          },
+        },
+        window = {
+          width = 33,
+        }
+      })
     end,
   },
   {
@@ -51,6 +86,21 @@ return {
           duration = {
             total = 50,
           },
+        },
+      },
+      lazygit = {
+        enabled = true,
+      },
+      win = {
+        --position = "floating",
+        border = "rounded",
+        --backdrop = 90,
+      },
+      terminal = {
+        enabled = true,
+        win = {
+          style = "float",
+          --backdrop = 90,
         },
       },
       -- words = { enabled = true },
