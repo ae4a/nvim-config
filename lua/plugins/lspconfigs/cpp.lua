@@ -2,7 +2,8 @@ local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local project_root = vim.fn.getcwd()
 
-require("lspconfig").clangd.setup({
+vim.lsp.enable("clangd")
+vim.lsp.config("clangd", {
   cmd = {
     "clangd",
     "--enable-config",

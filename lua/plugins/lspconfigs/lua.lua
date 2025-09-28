@@ -1,6 +1,7 @@
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-require("lspconfig").lua_ls.setup {
+vim.lsp.enable("lua_ls")
+vim.lsp.config('lua_ls', {
   on_init = function(client)
     if client.workspace_folders then
       local path = client.workspace_folders[1].name
@@ -33,4 +34,4 @@ require("lspconfig").lua_ls.setup {
     Lua = {}
   },
   capabilities = lsp_capabilities,
-}
+})
