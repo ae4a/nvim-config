@@ -40,6 +40,8 @@ wk.add({
 
     -- Snacks
     { "<leader>b", "<cmd>:lua Snacks.picker.git_log_line()<cr>",    desc = "Git logs for a line" },
+    { "gs",         "<cmd>lua Snacks.picker.lsp_symbols()<cr>",  desc = "Shows file LSP symbols" },
+    { "gS",         "<cmd>lua Snacks.picker.lsp_workspace_symbols()<cr>",  desc = "Shows workspace LSP symbols" },
 
     -- LSP
     { "gh",         "<cmd>lua vim.lsp.buf.hover()<cr>",           desc = "Displays hover information about the symbol under the cursor" },
@@ -48,7 +50,6 @@ wk.add({
     { "gi",         "<cmd>lua vim.lsp.buf.implementation()<cr>",  desc = "Lists all the implementations for the symbol under the cursor" },
     { "go",         "<cmd>lua vim.lsp.buf.type_definition()<cr>", desc = "Jumps to the definition of the type symbol" },
     { "gr",         "<cmd>FzfLua lsp_workspace_diagnostics<cr>",  desc = "Lists all the references " },
-    { "gs",         "<cmd>lua vim.lsp.buf.signature_help()<cr>",  desc = "Displays a function's signature information" },
     { "<F2>",       "<cmd>lua vim.lsp.buf.rename()<cr>",          desc = "Renames all references to the symbol under the cursor" },
     { "<F4>",       "<cmd>lua vim.lsp.buf.code_action()<cr>",     desc = "Selects a code action available at the current cursor position" },
     { "gl",         "<cmd>lua vim.diagnostic.open_float()<cr>",   desc = "Show diagnostics in a floating window" },
