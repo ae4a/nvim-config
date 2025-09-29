@@ -39,7 +39,7 @@ wk.add({
     { "<leader>f", "<cmd>:FzfLua files<cr>",                     desc = "Fzf files" },
 
     -- Snacks
-    { "<leader>b", "<cmd>:lua Snacks.git.blame_line()<cr>",    desc = "Git blame line" },
+    { "<leader>b", "<cmd>:lua Snacks.picker.git_log_line()<cr>",    desc = "Git logs for a line" },
 
     -- LSP
     { "gh",         "<cmd>lua vim.lsp.buf.hover()<cr>",           desc = "Displays hover information about the symbol under the cursor" },

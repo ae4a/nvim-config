@@ -9,6 +9,10 @@ opt.termguicolors = true
 opt.completeopt = {'menu', 'menuone', 'noselect'}
 opt.showmode = false
 
+-- Disable netrw directory listing because it blinks on startup
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 1
+
 -- Lines
 
 opt.number = true
