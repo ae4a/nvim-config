@@ -11,33 +11,33 @@ return {
         mode = "symbol_text",
         preset = "default",
         symbol_map = {
-          Text = "",
-          Method = "",
-          Function = "",
-          Constructor = "",
-          Field = "ﰠ",
-          Variable = "",
-          Class = "ﴯ",
-          Interface = "",
-          Module = "",
-          Property = "ﰠ",
-          Unit = "塞",
-          Value = "",
-          Enum = "",
-          Keyword = "",
-          Snippet = "",
-          Color = "",
-          File = "",
-          Reference = "",
-          Folder = "",
-          EnumMember = "",
-          Constant = "",
-          Struct = "פּ",
-          Event = "",
-          Operator = "",
-          TypeParameter = "",
-          Copilot = "",
-          Supermaven = "",
+          Text = "󰦨 ",
+          Method = " ",
+          Function = "󰊕 ",
+          Constructor = "󰊕 ",
+          Field = " ",
+          Variable = " ",
+          Class = " ",
+          Interface = " ",
+          Module = " ",
+          Property = " ",
+          Unit = " ",
+          Value = " ",
+          Enum = " ",
+          Keyword = " ",
+          Snippet = " ",
+          Color = " ",
+          File = " ",
+          Reference = " ",
+          Folder = " ",
+          EnumMember = " ",
+          Constant = " ",
+          Struct = " ",
+          Event = " ",
+          Operator = " ",
+          TypeParameter = " ",
+          Copilot = " ",
+          Supermaven = " ",
         },
       })
     end,
@@ -92,16 +92,11 @@ return {
           documentation = cmp.config.window.bordered()
         },
         view = {
-          entries = {
-            name = "custom",
-            selection_order = "near_cursor",
-            follow_cursor = true,
-          },
+          entries = "native"
         },
         sources = cmp.config.sources({
           {
             name = "luasnip",
-            group_index = 1,
             option = { use_show_condition = true },
             entry_filter = function()
               local context = require("cmp.config.context")
@@ -111,26 +106,21 @@ return {
           },
           {
             name = "nvim_lsp",
-            group_index = 2,
           },
           {
             name = "nvim_lua",
-            group_index = 3,
           },
           {
             name = "treesitter",
             keyword_length = 4,
-            group_index = 4,
           },
           {
             name = "path",
             keyword_length = 4,
-            group_index = 4,
           },
           {
             name = "buffer",
             keyword_length = 3,
-            group_index = 5,
             option = {
               get_bufnrs = function()
                 local bufs = {}
@@ -144,7 +134,6 @@ return {
           {
             name = "lazydev",
             keyword_length = 2,
-            group_index = 0,
           },
         }),
         -- formatting = {
@@ -190,17 +179,21 @@ return {
             cmp.config.compare.kind,
             cmp.config.compare.sort_text,
             cmp.config.compare.length,
-            cmp.config.compare.order,
           },
         },
         mapping = cmp.mapping.preset.insert({
-          ["Tab"] = cmp.mapping(
-            cmp.mapping.confirm({
-              select = true,
-              behavior = cmp.ConfirmBehavior.Insert,
-            }),
-            { "i", "c" }
-          ),
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              -- If completion menu is visible, confirm the selected item
+              cmp.confirm({ select = true })
+            elseif luasnip.expand_or_jumpable() then
+              -- If we are in a snippet and can jump, do it
+              luasnip.expand_or_jump()
+            else
+              -- Otherwise, fallback to a regular tab
+              fallback()
+            end
+          end, { "i", "s" }),
           ["<C-j>"] = cmp.mapping.select_next_item({
             behavior = cmp.ConfirmBehavior.Insert,
           }),
