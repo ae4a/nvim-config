@@ -19,7 +19,7 @@ return {
     config = function()
       -- setup lsp servers
       require("plugins.lspconfigs.lua")
-      require("plugins.lspconfigs.go")
+      require("plugins.lspconfigs.golang")
       require("plugins.lspconfigs.ts")
       require("plugins.lspconfigs.cpp")
       --require("plugins.lspconfigs.html")
