@@ -27,11 +27,26 @@ return {
         default_component_configs = { -- Fixes some icons
           diagnostics = {
             symbols = {
-              hint = "H",
-              info = "I",
-              warn = "W",
-              error = "E",
+              hint = "󰰂 ",
+              info = " ",
+              warn = " ",
+              error = " ",
             },
+          },
+          git_status = {
+            symbols = {
+              added = "",
+              -- -- Status type
+              -- untracked = "",
+              -- ignored = "",
+              -- unstaged = "󰄱",
+              -- staged = "",
+              -- conflict = "",
+            },
+          },
+          modified = {
+            symbol = "󰦒 ",
+            highlight = "NeoTreeModified",
           },
         },
         window = {
