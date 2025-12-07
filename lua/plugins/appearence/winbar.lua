@@ -98,13 +98,36 @@ local function get_file_icon()
   return "  "
 end
 
+local function get_relative_path()
+  local current_file = vim.api.nvim_buf_get_name(0)
+
+  local cwd = vim.fn.getcwd()
+
+  if current_file == "" then
+    return "[No Name]"
+  end
+
+  local cwd_pattern = cwd
+  if not string.match(cwd, "[/\\]$") then
+      cwd_pattern = cwd .. "/"
+  end
+
+  local relative_path = string.gsub(current_file, "^" .. cwd_pattern, "", 1)
+
+  if relative_path == current_file then
+      return vim.fn.fnamemodify(current_file, ":t")
+  end
+
+  return relative_path
+end
+
 local function set_winbar_callback()
   if should_skip_winbar() then
     vim.opt_local.winbar = ""
     return
   end
 
-  vim.opt_local.winbar = string.format("    %s%%*%%f    %%#WinBarBG# %%=", get_file_icon())
+  vim.opt_local.winbar = string.format("    %s%%*%s    %%#WinBarBG# %%=", get_file_icon(), get_relative_path())
 end
 
 local winbar_augroup = vim.api.nvim_create_augroup("WinBarControl", { clear = true })
