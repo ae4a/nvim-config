@@ -22,7 +22,11 @@ return {
             hide_dotfiles = false,
             hide_gitignored = true,
             show_hidden_count = false,
-          }
+          },
+          follow_current_file = {
+            enabled = true,
+            leave_dirs_open = true,
+          },
         },
         source_selector = {
           winbar = false,
