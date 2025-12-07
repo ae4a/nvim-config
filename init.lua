@@ -50,8 +50,8 @@ vim.diagnostic.config({
 
 
 require("config.lazy")
-
 require("keys.common")
+require("plugins.appearence.winbar")
 
 vim.api.nvim_create_user_command("Make", function(details)
   vim.cmd("make", details.args)

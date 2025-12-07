@@ -24,6 +24,9 @@ return {
             show_hidden_count = false,
           }
         },
+        source_selector = {
+          winbar = false,
+        },
         default_component_configs = { -- Fixes some icons
           diagnostics = {
             symbols = {
