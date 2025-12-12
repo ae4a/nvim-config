@@ -37,6 +37,7 @@ wk.add({
     { "<leader>g", "<cmd>:FzfLua live_grep<cr>",                 desc = "Fzf live grep" },
     { "<leader>r", "<cmd>:FzfLua live_grep_resume<cr>",          desc = "Fzf live grep resume" },
     { "<leader>f", "<cmd>:FzfLua files<cr>",                     desc = "Fzf files" },
+    { "<leader>k", "<cmd>:FzfLua buffers<cr>",                   desc = "Fzf buffers" },
 
     -- Snacks
     { "<leader>b", "<cmd>:lua Snacks.picker.git_log_line()<cr>",    desc = "Git logs for a line" },

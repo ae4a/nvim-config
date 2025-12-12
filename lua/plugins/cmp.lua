@@ -224,5 +224,38 @@ return {
         ["Add Cursor Up"] = "<C-k>",
       }
 	  end,
+  },
+  {
+    'stevearc/conform.nvim',
+    opts = {},
+    config = function()
+      require("conform").setup({
+        formatters = {
+            sqlfluff = {
+                args = {
+                    "format",
+                    "--dialect",
+                    "postgres",
+                    "--config",
+                    ".sqlfluff",
+                    --"--stdin",
+                    "-",
+                },
+                command = "sqlfluff",
+                stdin = true,
+            },
+        },
+
+        formatters_by_ft = {
+            sql = { "sqlfluff" },
+            -- ['pgsql'] = { "sqlfluff" },
+            -- ['sqldml'] = { "sqlfluff" },
+        },
+
+        format_on_save = {
+            timeout_ms = 500,
+            lsp_format = "fallback",        },
+      })
+    end,
   }
 }

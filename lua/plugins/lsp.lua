@@ -24,6 +24,8 @@ return {
       require("plugins.lspconfigs.cpp")
       --require("plugins.lspconfigs.html")
       require("plugins.lspconfigs.css")
+      --require("plugins.lspconfigs.sql")
+      require("plugins.lspconfigs.psql")
     end,
   },
   {
