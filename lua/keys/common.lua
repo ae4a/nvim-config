@@ -1,4 +1,6 @@
 local wk = require("which-key")
+local cur_snacks_win = nil
+local cur_snacks_win_name = ""
 
 wk.add({
   {
@@ -61,10 +63,21 @@ wk.add({
     mode = { "n", "t"},
 
     -- Snacks
-    { "<C-o>", "<cmd>:lua Snacks.terminal.toggle()<cr>",    desc = "Toggle snacks terminal" },
-    { "<C-l>",     "<cmd>:lua Snacks.lazygit()<cr>",             desc = "Lazygit" },
-    -- ToggleTerm
-    --{ "<C-o>", "<cmd>ToggleTerm direction=float<cr>", desc = "Toggle terminal" },
+    { "<C-o>", function()
+      if cur_snacks_win ~= nil and cur_snacks_win_name ~= "terminal" and cur_snacks_win.closed ~= true then
+        cur_snacks_win:hide()
+      end
+      local win, created = Snacks.terminal.toggle()
+      cur_snacks_win = win
+      cur_snacks_win_name = "terminal"
+    end, desc = "Toggle snacks terminal" },
+    { "<C-l>",     function()
+      if cur_snacks_win ~= nil and cur_snacks_win_ame ~= "lazygit" and cur_snacks_win.closed ~= true then
+        cur_snacks_win:hide()
+      end
+      cur_snacks_win = Snacks.lazygit()
+      cur_snacks_win_name = "lazygit"
+    end, desc = "Toggle lazygit" },
   }
 })
 
