@@ -19,29 +19,29 @@ local function darken_color_int(color, amount)
 end
 
 local function setup_winbar_highlights()
-    local source_hl = vim.api.nvim_get_hl(0, { name = "Normal" })
-    local inactive_source_hl = vim.api.nvim_get_hl(0, { name = "StatusLineNC" })
+  local source_hl = vim.api.nvim_get_hl(0, { name = "Normal" })
+  local inactive_source_hl = vim.api.nvim_get_hl(0, { name = "StatusLineNC" })
 
-    local fg_color = string.format("#%06x", source_hl.fg)
-    local inactive_fg_color = string.format("#%06x", inactive_source_hl.fg)
-    local bg_color = string.format("#%06x", darken_color_int(source_hl.bg, 0.1))
-    local bg_dark_color = string.format("#%06x", darken_color_int(source_hl.bg, 0.45))
+  local fg_color = string.format("#%06x", source_hl.fg)
+  local inactive_fg_color = string.format("#%06x", inactive_source_hl.fg)
+  local bg_color = string.format("#%06x", darken_color_int(source_hl.bg, 0.1))
+  local bg_dark_color = string.format("#%06x", darken_color_int(source_hl.bg, 0.45))
 
-    vim.api.nvim_set_hl(0, "WinBar", {
-        fg = fg_color,
-        bg = bg_color,
-        bold = true,
-    })
-    vim.api.nvim_set_hl(0, "WinBarNC", {
-        fg = inactive_fg_color,
-        bg = bg_color,
-        bold = false,
-    })
-    vim.api.nvim_set_hl(0, "WinBarBG", {
-        fg = inactive_fg_color,
-        bg = bg_dark_color,
-        bold = false,
-    })
+  vim.api.nvim_set_hl(0, "WinBar", {
+    fg = fg_color,
+    bg = bg_color,
+    bold = true,
+  })
+  vim.api.nvim_set_hl(0, "WinBarNC", {
+    fg = inactive_fg_color,
+    bg = bg_color,
+    bold = false,
+  })
+  vim.api.nvim_set_hl(0, "WinBarBG", {
+    fg = inactive_fg_color,
+    bg = bg_dark_color,
+    bold = false,
+  })
 end
 
 local function should_skip_winbar()
@@ -62,8 +62,8 @@ local function should_skip_winbar()
   }
 
   local skipped_buftypes = {
-    "nofile", -- help, quickfix, scratch buffers
-    "prompt", -- command line/search prompts
+    "nofile",   -- help, quickfix, scratch buffers
+    "prompt",   -- command line/search prompts
     "terminal", -- terminal windows
   }
 
@@ -109,13 +109,13 @@ local function get_relative_path()
 
   local cwd_pattern = cwd
   if not string.match(cwd, "[/\\]$") then
-      cwd_pattern = cwd .. "/"
+    cwd_pattern = cwd .. "/"
   end
 
   local relative_path = string.gsub(current_file, "^" .. cwd_pattern, "", 1)
 
   if relative_path == current_file then
-      return vim.fn.fnamemodify(current_file, ":t")
+    return vim.fn.fnamemodify(current_file, ":t")
   end
 
   return relative_path
@@ -139,6 +139,6 @@ vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
 
 
 vim.api.nvim_create_autocmd("ColorScheme", {
-    callback = setup_winbar_highlights,
+  callback = setup_winbar_highlights,
 })
 setup_winbar_highlights()

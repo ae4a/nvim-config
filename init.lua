@@ -6,7 +6,7 @@ opt.splitbelow = true
 opt.clipboard = 'unnamedplus'
 opt.fixeol = false
 opt.termguicolors = true
-opt.completeopt = {'menu', 'menuone', 'noselect'}
+opt.completeopt = { 'menu', 'menuone', 'noselect' }
 opt.showmode = false
 
 -- Disable netrw directory listing because it blinks on startup

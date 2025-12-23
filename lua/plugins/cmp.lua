@@ -6,7 +6,7 @@ return {
   },
   {
     "onsails/lspkind-nvim",
-    config =  function()
+    config = function()
       require("lspkind").init({
         mode = "symbol_text",
         preset = "default",
@@ -101,7 +101,7 @@ return {
             entry_filter = function()
               local context = require("cmp.config.context")
               return not context.in_treesitter_capture("string")
-                and not context.in_syntax_group("String")
+                  and not context.in_syntax_group("String")
             end,
           },
           {
@@ -218,12 +218,12 @@ return {
   {
     "mg979/vim-visual-multi",
     branch = "master",
-	  init = function()
-	  	vim.g.VM_maps = {
+    init = function()
+      vim.g.VM_maps = {
         ["Add Cursor Down"] = "<C-j>",
         ["Add Cursor Up"] = "<C-k>",
       }
-	  end,
+    end,
   },
   {
     'stevearc/conform.nvim',
@@ -231,30 +231,31 @@ return {
     config = function()
       require("conform").setup({
         formatters = {
-            sqlfluff = {
-                args = {
-                    "format",
-                    "--dialect",
-                    "postgres",
-                    "--config",
-                    ".sqlfluff",
-                    --"--stdin",
-                    "-",
-                },
-                command = "sqlfluff",
-                stdin = true,
+          sqlfluff = {
+            args = {
+              "format",
+              "--dialect",
+              "postgres",
+              "--config",
+              ".sqlfluff",
+              --"--stdin",
+              "-",
             },
+            command = "sqlfluff",
+            stdin = true,
+          },
         },
 
         formatters_by_ft = {
-            sql = { "sqlfluff" },
-            -- ['pgsql'] = { "sqlfluff" },
-            -- ['sqldml'] = { "sqlfluff" },
+          sql = { "sqlfluff" },
+          -- ['pgsql'] = { "sqlfluff" },
+          -- ['sqldml'] = { "sqlfluff" },
         },
 
         format_on_save = {
-            timeout_ms = 500,
-            lsp_format = "fallback",        },
+          timeout_ms = 500,
+          lsp_format = "fallback",
+        },
       })
     end,
   }

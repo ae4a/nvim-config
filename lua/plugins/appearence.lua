@@ -28,8 +28,8 @@ return {
         options = {
           icons_enabled = true,
           theme = require("plugins.lualine.kanagawa-nvim"),
-          component_separators = { left = '|', right = '|'},
-          section_separators = { left = '', right = ''},
+          component_separators = { left = '|', right = '|' },
+          section_separators = { left = '', right = '' },
           globalstatus = true,
         }
       })
