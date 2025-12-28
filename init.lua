@@ -13,6 +13,9 @@ opt.showmode = false
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
 
+
+vim.o.scrolloff = 10
+
 -- Lines
 
 opt.number = true
