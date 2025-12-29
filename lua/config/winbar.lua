@@ -1,4 +1,4 @@
-local bit = require('bit')
+local bit = require("bit")
 
 local function darken_color_int(color, amount)
   local r = bit.rshift(color, 16)
@@ -9,11 +9,7 @@ local function darken_color_int(color, amount)
   g = math.max(g * (1 - amount), 0)
   b = math.max(b * (1 - amount), 0)
 
-  local new_color = bit.bor(
-    bit.lshift(r, 16),
-    bit.lshift(g, 8),
-    b
-  )
+  local new_color = bit.bor(bit.lshift(r, 16), bit.lshift(g, 8), b)
 
   return new_color
 end
@@ -51,7 +47,7 @@ local function should_skip_winbar()
   local skipped_filetypes = {
     "neo-tree", -- Neo-tree's filetype
     "NvimTree", -- The older NvimTree plugin
-    "lazy",     -- Plugin manager windows
+    "lazy", -- Plugin manager windows
     "packer",
     "git",
     "fugitive",
@@ -62,8 +58,8 @@ local function should_skip_winbar()
   }
 
   local skipped_buftypes = {
-    "nofile",   -- help, quickfix, scratch buffers
-    "prompt",   -- command line/search prompts
+    "nofile", -- help, quickfix, scratch buffers
+    "prompt", -- command line/search prompts
     "terminal", -- terminal windows
   }
 
@@ -136,7 +132,6 @@ vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
   group = winbar_augroup,
   callback = set_winbar_callback,
 })
-
 
 vim.api.nvim_create_autocmd("ColorScheme", {
   callback = setup_winbar_highlights,

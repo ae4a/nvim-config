@@ -2,7 +2,7 @@ return {
   {
     "rebelot/kanagawa.nvim",
     config = function()
-      require('kanagawa').setup({
+      require("kanagawa").setup({
         overrides = function(colors)
           return {
             SnacksIndentScope = { fg = colors.theme.ui.special }, -- Do not like the default one

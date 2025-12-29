@@ -1,33 +1,33 @@
 return {
   {
-    'abecodes/tabout.nvim',
+    "abecodes/tabout.nvim",
     lazy = false,
     config = function()
-      require('tabout').setup {
+      require("tabout").setup({
         tabouts = {
           { open = "'", close = "'" },
           { open = '"', close = '"' },
-          { open = '`', close = '`' },
-          { open = '(', close = ')' },
-          { open = '[', close = ']' },
-          { open = '{', close = '}' }
+          { open = "`", close = "`" },
+          { open = "(", close = ")" },
+          { open = "[", close = "]" },
+          { open = "{", close = "}" },
         },
         ignore_beginning = true,
-      }
+      })
     end,
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "L3MON4D3/LuaSnip",
-      "hrsh7th/nvim-cmp"
+      "hrsh7th/nvim-cmp",
     },
-    opt = true,              -- Set this to true if the plugin is optional
-    event = 'InsertCharPre', -- Set the event to 'InsertCharPre' for better compatibility
+    opt = true, -- Set this to true if the plugin is optional
+    event = "InsertCharPre", -- Set the event to 'InsertCharPre' for better compatibility
     priority = 1000,
   },
   {
     "windwp/nvim-ts-autotag",
     config = function()
-      require("nvim-ts-autotag").setup {}
+      require("nvim-ts-autotag").setup({})
     end,
   },
   -- {
@@ -41,7 +41,7 @@ return {
   --   end,
   -- },
   {
-    'stevearc/conform.nvim',
+    "stevearc/conform.nvim",
     opts = {},
     config = function()
       require("conform").setup({
@@ -73,5 +73,5 @@ return {
         },
       })
     end,
-  }
+  },
 }

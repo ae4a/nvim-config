@@ -84,10 +84,10 @@ return {
         },
         window = {
           completion = cmp.config.window.bordered(), -- TODO change
-          documentation = cmp.config.window.bordered()
+          documentation = cmp.config.window.bordered(),
         },
         view = {
-          entries = "native"
+          entries = "native",
         },
         sources = cmp.config.sources({
           {
@@ -95,8 +95,7 @@ return {
             option = { use_show_condition = true },
             entry_filter = function()
               local context = require("cmp.config.context")
-              return not context.in_treesitter_capture("string")
-                  and not context.in_syntax_group("String")
+              return not context.in_treesitter_capture("string") and not context.in_syntax_group("String")
             end,
           },
           {
@@ -198,7 +197,7 @@ return {
           --["<C-b>"] = cmp.mapping.scroll_docs(-5),
           --["<C-f>"] = cmp.mapping.scroll_docs(5),
           --["<C-q>"] = cmp.mapping.abort(),
-          ['<escape>'] = cmp.mapping.abort(),
+          ["<escape>"] = cmp.mapping.abort(),
         }),
       })
       -- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done()) -- TEST

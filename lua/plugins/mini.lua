@@ -1,30 +1,30 @@
 return {
   {
-    'nvim-mini/mini.pairs',
-    version = '*',
+    "nvim-mini/mini.pairs",
+    version = "*",
     config = function()
-      require('mini.pairs').setup()
+      require("mini.pairs").setup()
     end,
   },
   {
-    'nvim-mini/mini.ai',
-    version = '*',
+    "nvim-mini/mini.ai",
+    version = "*",
     config = function()
-      require('mini.ai').setup()
+      require("mini.ai").setup()
     end,
   },
   {
-    'nvim-mini/mini.move',
-    version = '*',
+    "nvim-mini/mini.move",
+    version = "*",
     config = function()
-      require('mini.move').setup()
+      require("mini.move").setup()
     end,
   },
   {
-    'nvim-mini/mini.comment',
-    version = '*',
+    "nvim-mini/mini.comment",
+    version = "*",
     config = function()
-      require('mini.comment').setup()
+      require("mini.comment").setup()
     end,
   },
 }

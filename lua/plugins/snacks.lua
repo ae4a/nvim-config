@@ -43,5 +43,5 @@ return {
       },
       -- words = { enabled = true },
     },
-  }
+  },
 }

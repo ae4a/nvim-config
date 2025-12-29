@@ -4,7 +4,7 @@ return {
     version = "*",
     opts = {
       float_opts = {
-        border = 'curved',
+        border = "curved",
       },
     },
   },
@@ -16,9 +16,9 @@ return {
       "MunifTanjim/nui.nvim",
       "nvim-tree/nvim-web-devicons", -- optional, but recommended
     },
-    lazy = false,                    -- neo-tree will lazily load itself
+    lazy = false, -- neo-tree will lazily load itself
     config = function()
-      require('neo-tree').setup({
+      require("neo-tree").setup({
         enable_diagnostics = true,
         filesystem = {
           filtered_items = {
@@ -61,14 +61,14 @@ return {
         },
         window = {
           width = 33,
-        }
+        },
       })
     end,
   },
   {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.8',
-    dependencies = { 'nvim-lua/plenary.nvim' }
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.8",
+    dependencies = { "nvim-lua/plenary.nvim" },
   },
   {
     "ibhagwan/fzf-lua",
@@ -76,7 +76,7 @@ return {
     opts = {
       grep = {
         hidden = true,
-      }
-    }
+      },
+    },
   },
 }
