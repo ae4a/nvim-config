@@ -74,6 +74,6 @@ vim.o.expandtab = true
 
 -- Configs
 
-require("config")
-require("keys")
-require("plugins.appearence.winbar")
+require("config.lazy")
+require("config.keys")
+require("config.winbar")
