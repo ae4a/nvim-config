@@ -63,6 +63,7 @@ return {
 
         formatters_by_ft = {
           sql = { "sqlfluff" },
+          swift = { "swiftformat" },
           -- ['pgsql'] = { "sqlfluff" },
           -- ['sqldml'] = { "sqlfluff" },
         },

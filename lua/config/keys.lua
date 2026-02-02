@@ -58,6 +58,9 @@ wk.add({
     { "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", desc = "Show diagnostics in a floating window" },
     --{ "[d",   "<cmd>lua vim.diagnostic.goto_prev()<cr>",    desc = "Move to the previous diagnostic" },
     --{ "]d",   "<cmd>lua vim.diagnostic.goto_next()<cr>",    desc = "Move to the next diagnostic" },
+
+    -- Xcodebuild
+    { "<leader>x", "<cmd>:XcodebuildPicker<cr>", desc = "Xcodebuild picker" },
   },
   {
     mode = { "n", "t" },

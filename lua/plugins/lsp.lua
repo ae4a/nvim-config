@@ -109,6 +109,23 @@ return {
       })
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
+      -- Extend it here because it can not be autoinstalled
+      servers.sourcekit = {
+        cmd = { vim.trim(vim.fn.system("xcrun -f sourcekit-lsp")) },
+        filetypes = { "swift" },
+        root_dir = function(_, callback)
+          callback(require("lspconfig.util").root_pattern("Package.swift")(vim.fn.getcwd()) or require("lspconfig.util").find_git_ancestor(vim.fn.getcwd()))
+        end,
+        capabilities = {
+          workspace = {
+            didChangeWatchedFiles = {
+              dynamicRegistration = true,
+            },
+          },
+        },
+      }
+      vim.lsp.enable("sourcekit")
+
       require("mason-lspconfig").setup({
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
         automatic_installation = false,
@@ -129,4 +146,5 @@ return {
   require("plugins.lang.go"),
   require("plugins.lang.lua"),
   require("plugins.lang.ts"),
+  require("plugins.lang.swift"),
 }

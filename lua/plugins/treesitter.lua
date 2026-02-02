@@ -1,10 +1,15 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     config = function()
+      local configs = require("nvim-treesitter")
+
       require("nvim-treesitter.install").compilers = { "clang" }
-      require("nvim-treesitter.configs").setup({
+
+      configs.setup({
         ensure_installed = {
+          "swift",
           "html",
           "lua",
           "c",
