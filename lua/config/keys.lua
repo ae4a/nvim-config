@@ -77,6 +77,24 @@ wk.add({
     {
       mode = { "n" },
       { "<leader>ot", function() require("opencode").toggle() end, desc = "Toggle opencode" },
+      {
+        "<leader>of",
+        mode = { "n", "t" },
+        function()
+          if vim.bo.filetype == "opencode_terminal" then
+            vim.cmd("wincmd p")
+          else
+            local provider = require("opencode.config").provider
+            local win = provider and provider.get and provider:get()
+            if win and win.closed == false then
+              win:focus()
+            else
+              require("opencode").toggle()
+            end
+          end
+        end,
+        desc = "Focus opencode",
+      },
       ---@diagnostic disable-next-line: redundant-return-value
       { "<leader>ol", function() return require("opencode").operator("@this ") .. "_" end, desc = "Add line to opencode", expr = true },
       { "<leader>ou", function() require("opencode").command("session.half.page.up") end, desc = "Scroll opencode up" },
