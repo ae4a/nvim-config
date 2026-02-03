@@ -9,9 +9,7 @@ vim.o.numberwidth = 4
 vim.o.mouse = "a"
 vim.o.showmode = false
 
-vim.schedule(function()
-  vim.o.clipboard = "unnamedplus"
-end)
+vim.schedule(function() vim.o.clipboard = "unnamedplus" end)
 
 vim.o.wrap = false
 vim.o.breakindent = true
@@ -59,11 +57,16 @@ vim.o.tabstop = 2
 vim.o.smartindent = true
 vim.o.expandtab = true
 
--- Misc
-vim.lsp.inlay_hint.enable(false)
-
 -- Configs
 
 require("config.lazy")
 require("config.keys")
 require("config.winbar")
+
+-- If you notice random inlay hints - check who made it via this snippet
+-- local original_enable = vim.lsp.inlay_hint.enable
+-- vim.lsp.inlay_hint.enable = function(...)
+--   print("inlay_hint.enable called by:")
+--   print(debug.traceback())
+--   return original_enable(...)
+-- end
