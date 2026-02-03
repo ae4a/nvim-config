@@ -59,6 +59,9 @@ vim.o.tabstop = 2
 vim.o.smartindent = true
 vim.o.expandtab = true
 
+-- Misc
+vim.lsp.inlay_hint.enable(false)
+
 -- Configs
 
 require("config.lazy")

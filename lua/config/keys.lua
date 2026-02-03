@@ -52,15 +52,36 @@ wk.add({
     { "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", desc = "Jump to declaration" },
     { "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", desc = "Lists all the implementations for the symbol under the cursor" },
     { "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", desc = "Jumps to the definition of the type symbol" },
-    { "gr", "<cmd>FzfLua lsp_workspace_diagnostics<cr>", desc = "Lists all the references " },
+    { "gr", "<cmd>FzfLua lsp_workspace_diagnostics<cr>", desc = "Lists all the references " }, -- WTF SHIT BUG
     { "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Renames all references to the symbol under the cursor" },
     { "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Selects a code action available at the current cursor position" },
     { "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", desc = "Show diagnostics in a floating window" },
     --{ "[d",   "<cmd>lua vim.diagnostic.goto_prev()<cr>",    desc = "Move to the previous diagnostic" },
     --{ "]d",   "<cmd>lua vim.diagnostic.goto_next()<cr>",    desc = "Move to the next diagnostic" },
-
+    {
+      "<leader>ih",
+      function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
+      desc = "Toggle inlay hints",
+    },
     -- Xcodebuild
     { "<leader>x", "<cmd>:XcodebuildPicker<cr>", desc = "Xcodebuild picker" },
+
+    -- Opencode
+    {
+      mode = { "n", "x" },
+      { "<leader>oa", function() require("opencode").ask("@this: ", { submit = true }) end, desc = "Ask opencode…" },
+      { "<leader>os", function() require("opencode").select() end, desc = "Execute opencode action…" },
+      ---@diagnostic disable-next-line: redundant-return-value
+      { "<leader>oo", function() return require("opencode").operator("@this ") end, desc = "Add range to opencode", expr = true },
+    },
+    {
+      mode = { "n" },
+      { "<leader>ot", function() require("opencode").toggle() end, desc = "Toggle opencode" },
+      ---@diagnostic disable-next-line: redundant-return-value
+      { "<leader>ol", function() return require("opencode").operator("@this ") .. "_" end, desc = "Add line to opencode", expr = true },
+      { "<leader>ou", function() require("opencode").command("session.half.page.up") end, desc = "Scroll opencode up" },
+      { "<leader>od", function() require("opencode").command("session.half.page.down") end, desc = "Scroll opencode down" },
+    },
   },
   {
     mode = { "n", "t" },
