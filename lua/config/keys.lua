@@ -112,7 +112,7 @@ wk.add({
 
     -- Snacks
     {
-      "<C-o>",
+      "<C-k>",
       function()
         if cur_snacks_win ~= nil and cur_snacks_win_name ~= "terminal" and cur_snacks_win.closed ~= true then
           cur_snacks_win:hide()
