@@ -2,6 +2,13 @@ local wk = require("which-key")
 local cur_snacks_win = nil
 local cur_snacks_win_name = ""
 
+-- Some unbinding
+vim.keymap.del("n", "gri")
+vim.keymap.del("n", "grn")
+vim.keymap.del("n", "gra")
+vim.keymap.del("n", "grr")
+vim.keymap.del("n", "grt")
+
 wk.add({
   {
     mode = { "n", "v" },
@@ -42,19 +49,19 @@ wk.add({
     { "<leader>k", "<cmd>:FzfLua buffers<cr>", desc = "Fzf buffers" },
 
     -- Snacks
-    { "<leader>b", "<cmd>:lua Snacks.picker.git_log_line()<cr>", desc = "Git logs for a line" },
-    { "gs", "<cmd>lua Snacks.picker.lsp_symbols()<cr>", desc = "Shows file LSP symbols" },
-    { "gS", "<cmd>lua Snacks.picker.lsp_workspace_symbols()<cr>", desc = "Shows workspace LSP symbols" },
+    { "<leader>b", "<cmd>lua Snacks.picker.git_log_line()<cr>", desc = "Git logs for a line" },
+    { "<leader>s", "<cmd>lua Snacks.picker.lsp_symbols()<cr>", desc = "Shows file LSP symbols" },
+    { "<leader>p", "<cmd>lua Snacks.picker.lsp_workspace_symbols()<cr>", desc = "Shows workspace LSP symbols" },
 
     -- LSP
     { "gh", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "Displays hover information about the symbol under the cursor" },
     { "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "Jump to the definition" },
     { "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", desc = "Jump to declaration" },
-    { "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", desc = "Lists all the implementations for the symbol under the cursor" },
+    { "gi", "<cmd>FzfLua lsp_implementations<cr>", desc = "Lists all the implementations for the symbol under the cursor" },
     { "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", desc = "Jumps to the definition of the type symbol" },
-    { "gr", "<cmd>FzfLua lsp_workspace_diagnostics<cr>", desc = "Lists all the references " }, -- WTF SHIT BUG
-    { "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Renames all references to the symbol under the cursor" },
-    { "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Selects a code action available at the current cursor position" },
+    { "gr", "<cmd>FzfLua lsp_references<cr>", desc = "Lists all the references " },
+    { "gR", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Renames all references to the symbol under the cursor" },
+    { "ga", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Selects a code action available at the current cursor position" },
     { "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", desc = "Show diagnostics in a floating window" },
     --{ "[d",   "<cmd>lua vim.diagnostic.goto_prev()<cr>",    desc = "Move to the previous diagnostic" },
     --{ "]d",   "<cmd>lua vim.diagnostic.goto_next()<cr>",    desc = "Move to the next diagnostic" },
@@ -79,7 +86,6 @@ wk.add({
       { "<leader>ot", function() require("opencode").toggle() end, desc = "Toggle opencode" },
       {
         "<leader>of",
-        mode = { "n", "t" },
         function()
           if vim.bo.filetype == "opencode_terminal" then
             vim.cmd("wincmd p")
