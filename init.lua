@@ -63,6 +63,11 @@ require("config.lazy")
 require("config.keys")
 require("config.winbar")
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "go" },
+  callback = function() vim.treesitter.start() end,
+})
+
 -- If you notice random inlay hints - check who made it via this snippet
 -- local original_enable = vim.lsp.inlay_hint.enable
 -- vim.lsp.inlay_hint.enable = function(...)

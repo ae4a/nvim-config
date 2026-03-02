@@ -1,17 +1,13 @@
 return {
   {
     "williamboman/mason.nvim",
-    config = function()
-      require("mason").setup()
-    end,
+    config = function() require("mason").setup() end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "williamboman/mason.nvim" },
-    ensure_installed = { "lua_ls", "gopls", "ts_ls" },
-    config = function()
-      require("mason-lspconfig").setup()
-    end,
+    ensure_installed = { "lua_ls", "ts_ls" },
+    config = function() require("mason-lspconfig").setup() end,
   },
   {
     "neovim/nvim-lspconfig",
@@ -62,12 +58,14 @@ return {
             },
           },
         },
-        sqlls = {},
-        postgres_lsp = {},
+        -- sqlls = {},
+        postgres_lsp = {
+          filetypes = { "sql" },
+          root_markers = { "go.mod" },
+        },
         html = {},
         gopls = {
-          filetypes = { "go", "go.mod" },
-          root_markers = { "go.work", "go.mod", ".git" },
+          filetypes = { "go", "gomod" },
           settings = {
             gopls = {
               analyses = {
@@ -75,6 +73,15 @@ return {
                 shadow = true,
               },
               staticcheck = true,
+              semanticTokens = true,
+              -- hints = {
+              --   assignVariableTypes = false,
+              --   compositeLiteralFields = false,
+              --   constantValues = false,
+              --   functionTypeParameters = false,
+              --   parameterNames = false,
+              --   rangeVariableTypes = false,
+              -- },
             },
           },
         },
@@ -94,9 +101,7 @@ return {
               vim.api.nvim_create_autocmd("BufWritePre", {
                 group = vim.api.nvim_create_augroup("LspFormatting", {}),
                 buffer = bufnr,
-                callback = function()
-                  vim.lsp.buf.format({ async = true })
-                end,
+                callback = function() vim.lsp.buf.format({ async = true }) end,
               })
             end
           end,
@@ -113,9 +118,7 @@ return {
       servers.sourcekit = {
         cmd = { vim.trim(vim.fn.system("xcrun -f sourcekit-lsp")) },
         filetypes = { "swift" },
-        root_dir = function(_, callback)
-          callback(require("lspconfig.util").root_pattern("Package.swift")(vim.fn.getcwd()) or require("lspconfig.util").find_git_ancestor(vim.fn.getcwd()))
-        end,
+        root_dir = function(_, callback) callback(require("lspconfig.util").root_pattern("Package.swift")(vim.fn.getcwd()) or require("lspconfig.util").find_git_ancestor(vim.fn.getcwd())) end,
         capabilities = {
           workspace = {
             didChangeWatchedFiles = {

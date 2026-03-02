@@ -17,6 +17,20 @@ return {
         ask = {
           prompt = "FUCK: ",
         },
+        picker = {
+          sources = {
+            explorer = {
+              win = {
+                list = {
+                  keys = {
+                    -- This forces 'e' to open in the current window/tab
+                    ["e"] = "confirm",
+                  },
+                },
+              },
+            },
+          },
+        },
       }
 
       -- Required for `opts.events.reload`.
