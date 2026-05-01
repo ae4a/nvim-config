@@ -1,6 +1,28 @@
 local wk = require("which-key")
+
+-- Some functions for terminal and lazygit overlay to work together
 local cur_snacks_win = nil
 local cur_snacks_win_name = ""
+
+function toggle_terminal()
+  if cur_snacks_win ~= nil and cur_snacks_win_name ~= "terminal" and cur_snacks_win.closed ~= true then
+    cur_snacks_win:hide()
+  end
+  local win, created = Snacks.terminal.toggle()
+  cur_snacks_win = win
+  cur_snacks_win_name = "terminal"
+end
+
+function toggle_lazygit()
+  if cur_snacks_win ~= nil and cur_snacks_win.closed ~= true then
+    cur_snacks_win:hide()
+    if cur_snacks_win_name == "lazygit" then
+      return
+    end
+  end
+  cur_snacks_win = Snacks.lazygit()
+  cur_snacks_win_name = "lazygit"
+end
 
 -- Some unbinding
 vim.keymap.del("n", "gri")
@@ -11,21 +33,21 @@ vim.keymap.del("n", "grt")
 
 wk.add({
   {
+    mode = { "i" },
+    { "jk", "<escape>", desc = "Exit from insert mode" },
+  },
+  {
     mode = { "n", "v" },
 
     -- Common
     { "<leader>w", "<cmd>w<cr>", desc = "Write" },
   },
   {
-    mode = { "i" },
-    { "jk", "<escape>", desc = "Exit from insert mode" },
-  },
-  {
     mode = { "n" },
     group = "buffer",
 
     -- Nvim tree
-    { "<leader>e", "<cmd>Neotree focus<cr>", desc = "Toggle file tree" },
+    { "<leader>e", "<cmd>Neotree focus<cr>", desc = "Focus file tree" },
     { "<leader>E", "<cmd>Neotree close<cr>", desc = "Close file tree" },
 
     -- Telescope - do not use TODO remove telescope
@@ -113,28 +135,12 @@ wk.add({
     -- Snacks
     {
       "<C-h>",
-      function()
-        if cur_snacks_win ~= nil and cur_snacks_win_name ~= "terminal" and cur_snacks_win.closed ~= true then
-          cur_snacks_win:hide()
-        end
-        local win, created = Snacks.terminal.toggle()
-        cur_snacks_win = win
-        cur_snacks_win_name = "terminal"
-      end,
-      desc = "Toggle snacks terminal",
+      toggle_terminal,
+      desc = "Toggle terminal",
     },
     {
       "<C-l>",
-      function()
-        if cur_snacks_win ~= nil and cur_snacks_win.closed ~= true then
-          cur_snacks_win:hide()
-          if cur_snacks_win_name == "lazygit" then
-            return
-          end
-        end
-        cur_snacks_win = Snacks.lazygit()
-        cur_snacks_win_name = "lazygit"
-      end,
+      toggle_lazygit,
       desc = "Toggle lazygit",
     },
   },
