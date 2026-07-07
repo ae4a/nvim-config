@@ -68,6 +68,11 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function() vim.treesitter.start() end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "yaml",
+  callback = function() vim.opt_local.foldmethod = "manual" end,
+})
+
 -- If you notice random inlay hints - check who made it via this snippet
 -- local original_enable = vim.lsp.inlay_hint.enable
 -- vim.lsp.inlay_hint.enable = function(...)

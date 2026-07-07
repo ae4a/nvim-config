@@ -145,6 +145,16 @@ return {
       })
     end,
   },
+  -- { -- Helps with memory
+  --   "hinell/lsp-timeout.nvim",
+  --   dependencies = { "neovim/nvim-lspconfig" },
+  --   init = function()
+  --     vim.g.lspTimeoutConfig = {
+  --       stopTimeout = 1000 * 60 * 15, -- Kill LSP after 5 minutes of inactivity
+  --       startModules = true, -- Automatically restart when you refocus
+  --     }
+  --   end,
+  -- },
   -- Language specific plugins
   require("plugins.lang.go"),
   require("plugins.lang.lua"),

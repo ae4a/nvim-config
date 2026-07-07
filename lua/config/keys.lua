@@ -1,27 +1,62 @@
+local float_manager = require("config.float_manager")
 local wk = require("which-key")
 
--- Some functions for terminal and lazygit overlay to work together
-local cur_snacks_win = nil
-local cur_snacks_win_name = ""
+-- Floating window toggles via the unified float manager
+local lazygit_win = nil
 
-function toggle_terminal()
-  if cur_snacks_win ~= nil and cur_snacks_win_name ~= "terminal" and cur_snacks_win.closed ~= true then
-    cur_snacks_win:hide()
-  end
-  local win, created = Snacks.terminal.toggle()
-  cur_snacks_win = win
-  cur_snacks_win_name = "terminal"
+local function toggle_terminal()
+  float_manager.toggle(
+    "terminal",
+    function() Snacks.terminal.toggle() end,
+    function() Snacks.terminal.toggle() end,
+    function()
+      local w = Snacks.terminal.get()
+      return w ~= nil and w.closed ~= true
+    end
+  )
 end
 
-function toggle_lazygit()
-  if cur_snacks_win ~= nil and cur_snacks_win.closed ~= true then
-    cur_snacks_win:hide()
-    if cur_snacks_win_name == "lazygit" then
-      return
+local function toggle_lazygit()
+  float_manager.toggle(
+    "lazygit",
+    function() lazygit_win = Snacks.lazygit() end,
+    function() if lazygit_win then lazygit_win:hide() end end,
+    function() return lazygit_win ~= nil and lazygit_win.closed ~= true end
+  )
+end
+
+-- All fzf-lua pickers share a single hidden process slot, so they all use the
+-- same "fzf" name in the float manager.  The close_fn calls fzf-lua's own hide
+-- API; the open_fn opens whichever picker was requested.
+local function fzf(picker, opts)
+  float_manager.toggle(
+    "fzf",
+    function() require("fzf-lua")[picker](opts) end,
+    function() require("fzf-lua").hide() end,
+    function()
+      -- fzf-lua sets filetype="fzf" on its terminal buffer; if no such buffer
+      -- has an open window the picker was closed externally.
+      for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.bo[buf].filetype == "fzf" and #vim.fn.win_findbuf(buf) > 0 then
+          return true
+        end
+      end
+      return false
     end
-  end
-  cur_snacks_win = Snacks.lazygit()
-  cur_snacks_win_name = "lazygit"
+  )
+end
+
+-- All Snacks pickers share the "snacks_picker" name. Snacks has no hide API,
+-- so close_fn closes all active pickers via Snacks.picker.get().
+local function snacks_pick(picker, opts)
+  float_manager.toggle(
+    "snacks_picker",
+    function() Snacks.picker[picker](opts) end,
+    function()
+      for _, p in ipairs(Snacks.picker.get()) do p:close() end
+    end,
+    function() return #Snacks.picker.get() > 0 end
+  )
 end
 
 -- Some unbinding
@@ -64,24 +99,24 @@ wk.add({
     { "<leader>q", "<cmd>:lua Snacks.bufdelete()<cr>", desc = "Delete current buffer" },
 
     -- Fuzzy finder
-    { "<C-p>", "<cmd>:FzfLua<cr>", desc = "Fzf" },
-    { "<leader>g", "<cmd>:FzfLua live_grep<cr>", desc = "Fzf live grep" },
-    { "<leader>r", "<cmd>:FzfLua live_grep_resume<cr>", desc = "Fzf live grep resume" },
-    { "<leader>f", "<cmd>:FzfLua files<cr>", desc = "Fzf files" },
-    { "<leader>k", "<cmd>:FzfLua buffers<cr>", desc = "Fzf buffers" },
+    { "<C-p>", function() fzf("builtin") end, desc = "Fzf" },
+    { "<leader>g", function() fzf("live_grep") end, desc = "Fzf live grep" },
+    { "<leader>r", function() fzf("live_grep_resume") end, desc = "Fzf live grep resume" },
+    { "<leader>f", function() fzf("files") end, desc = "Fzf files" },
+    { "<leader>k", function() fzf("buffers") end, desc = "Fzf buffers" },
 
     -- Snacks
-    { "<leader>b", "<cmd>lua Snacks.picker.git_log_line()<cr>", desc = "Git logs for a line" },
-    { "<leader>s", "<cmd>lua Snacks.picker.lsp_symbols()<cr>", desc = "Shows file LSP symbols" },
-    { "<leader>p", "<cmd>lua Snacks.picker.lsp_workspace_symbols()<cr>", desc = "Shows workspace LSP symbols" },
+    { "<leader>b", function() snacks_pick("git_log_line") end, desc = "Git logs for a line" },
+    { "<leader>s", function() snacks_pick("lsp_symbols") end, desc = "Shows file LSP symbols" },
+    { "<leader>p", function() snacks_pick("lsp_workspace_symbols") end, desc = "Shows workspace LSP symbols" },
 
     -- LSP
     { "gh", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "Displays hover information about the symbol under the cursor" },
     { "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "Jump to the definition" },
     { "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", desc = "Jump to declaration" },
-    { "gi", "<cmd>FzfLua lsp_implementations<cr>", desc = "Lists all the implementations for the symbol under the cursor" },
+    { "gi", function() fzf("lsp_implementations") end, desc = "Lists all the implementations for the symbol under the cursor" },
     { "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", desc = "Jumps to the definition of the type symbol" },
-    { "gr", "<cmd>FzfLua lsp_references<cr>", desc = "Lists all the references " },
+    { "gr", function() fzf("lsp_references") end, desc = "Lists all the references " },
     { "gR", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Renames all references to the symbol under the cursor" },
     { "ga", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Selects a code action available at the current cursor position" },
     { "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", desc = "Show diagnostics in a floating window" },
