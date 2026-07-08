@@ -1,3 +1,5 @@
+local floatMgr = require("util.float-mgr")
+
 return {
   "folke/snacks.nvim",
   opts = {
@@ -26,9 +28,8 @@ return {
   keys = {
     {
       "<C-_>",
-      function()
-        vim.notify("fuck2")
-        Snacks.terminal(nil, {
+      floatMgr.wrap(function()
+        return Snacks.terminal(nil, {
           cwd = LazyVim.root(),
           win = {
             keys = {
@@ -41,15 +42,14 @@ return {
             },
           },
         })
-      end,
+      end),
       mode = { "n", "t" },
       desc = "Toggle LazyGit (Root)",
     },
     {
       "<C-l>",
-      function()
-        vim.notify("fuck1")
-        Snacks.lazygit({
+      floatMgr.wrap(function()
+        return Snacks.lazygit({
           win = {
             keys = {
               nav_h = false,
@@ -61,7 +61,7 @@ return {
             },
           },
         })
-      end,
+      end),
       mode = { "n", "t" },
       desc = "Toggle LazyGit (Root)",
     },

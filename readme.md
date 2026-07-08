@@ -1,4 +1,7 @@
 # 💤 LazyVim
+modified
 
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
-Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+## TODOs
+- remove immediate completion
+- remove trailing chars
+- neotree switches to other repo if i am in lib
