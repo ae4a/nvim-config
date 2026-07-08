@@ -21,7 +21,7 @@ local function setup_winbar_highlights()
   local fg_color = string.format("#%06x", source_hl.fg)
   local inactive_fg_color = string.format("#%06x", inactive_source_hl.fg)
   local bg_color = string.format("#%06x", darken_color_int(source_hl.bg, 0.1))
-  local bg_dark_color = string.format("#%06x", darken_color_int(source_hl.bg, 0.45))
+  local bg_dark_color = string.format("#%06x", darken_color_int(source_hl.bg, 0.25))
 
   vim.api.nvim_set_hl(0, "WinBar", {
     fg = fg_color,
