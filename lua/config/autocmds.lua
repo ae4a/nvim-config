@@ -6,3 +6,9 @@ vim.api.nvim_create_autocmd("BufEnter", {
     vim.opt.formatoptions:remove({ "r", "o" })
   end,
 })
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { link = "Normal" })
+  end,
+})

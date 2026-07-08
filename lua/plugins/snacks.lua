@@ -19,20 +19,15 @@ return {
         enabled = false,
       },
     },
+    lazygit = {
+      enabled = true,
+    },
   },
   keys = {
     {
-      "<C-/>",
-      function()
-        Snacks.terminal.toggle(nil, { cwd = LazyVim.root() })
-      end,
-      mode = { "n", "t" },
-      desc = "Toggle terminal (Root Dir)",
-    },
-    {
       "<C-l>",
       function()
-        Snacks.terminal({ "lazygit" }, { cwd = LazyVim.root.get() })
+        Snacks.lazygit()
       end,
       mode = { "n", "t" },
       desc = "Toggle LazyGit (Root)",
