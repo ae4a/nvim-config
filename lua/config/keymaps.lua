@@ -9,6 +9,14 @@ vim.keymap.del("n", "<C-k>")
 vim.keymap.set("n", "<leader>h", "<cmd>noh<cr>", { desc = "Clear highlights" })
 
 vim.keymap.set("n", "<leader>w", "<cmd>write<cr>", { desc = "Save File" })
+vim.keymap.set("n", "<leader>uR", "<cmd>LspRestart<cr>", { desc = "Restart LSP" })
+
+vim.keymap.set(
+  "n",
+  "gl",
+  "<cmd>lua vim.diagnostic.open_float()<cr>",
+  { desc = "Show diagnostics in a floating window" }
+)
 
 for _, lhs in ipairs({
   "<leader>ww",

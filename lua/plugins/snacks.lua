@@ -30,8 +30,8 @@ return {
       "<C-_>",
       floatMgr.wrap(function()
         return Snacks.terminal(nil, {
-          cwd = LazyVim.root(),
           win = {
+            border = "rounded",
             keys = {
               nav_h = false,
               nav_j = false,
