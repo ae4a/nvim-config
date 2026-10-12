@@ -1,6 +1,13 @@
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      filesystem = {
+        filtered_items = {
+          show_hidden_count = false,
+        },
+      },
+    },
     keys = {
       {
         "<leader>e",
